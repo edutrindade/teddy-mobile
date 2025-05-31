@@ -3,6 +3,7 @@ export const colors: TColors = {
   white: '#FFFFFF',
   light: '#F5F5F5',
   light200: '#D9D9D9',
+  light300: '#666666',
   grey: '#AAAAAA',
   black: '#000000',
   black100: 'rgba(0,0,0,0.4)',
