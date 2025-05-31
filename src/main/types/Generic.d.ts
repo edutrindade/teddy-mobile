@@ -1,10 +1,15 @@
 declare module '*.png';
+declare module '*.svg' {
+  const content: string;
+  export default content;
+}
 
 type TColors = {
   primary: string;
   white: string;
   light: string;
   light200: string;
+  light300: string;
   grey: string;
   black: string;
   black100: string;
@@ -17,6 +22,8 @@ type TLayout = {
   buttonBorderRadius: number;
   screenWidth: number;
   screenHeight: number;
+  headerHeight: number;
+
   elevation: {
     default: number;
     high: number;
