@@ -33,6 +33,7 @@ export const layout: TLayout = {
   borderRadius: 4,
   screenWidth: width,
   screenHeight: height,
+  headerHeight: getSize(50),
 
   buttonBorderRadius: 24,
   elevation: {
