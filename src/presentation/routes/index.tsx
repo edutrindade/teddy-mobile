@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, NavigationContainerRef } from '@react-navigation/native';
 
 import HomeScreen from '../screens/Home';
-import ClienteScreen from '../screens/Customers';
+import CustomersScreen from '../screens/Customers';
 import { View, StatusBar } from 'react-native';
 import { colors } from '../styles/colors';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -14,31 +14,53 @@ export type RootStackParamList = {
   Customers: undefined;
 };
 
+declare global {
+  namespace ReactNavigation {
+    interface RootParamList extends RootStackParamList {}
+  }
+}
+
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const Drawer = createDrawerNavigator();
 
-const MyStatusBar = () => {
+const MyStatusBar = ({ routeName }: { routeName: string | undefined }) => {
+  const isHome = routeName === 'Home';
+  const backgroundColor = isHome ? colors.light : colors.white;
+
   return (
-    <View style={{ backgroundColor: colors.light, height: StatusBar.currentHeight }}>
-      <StatusBar translucent backgroundColor={colors.light} barStyle="dark-content" />
+    <View style={{ backgroundColor, height: StatusBar.currentHeight }}>
+      <StatusBar translucent backgroundColor={backgroundColor} barStyle="dark-content" />
     </View>
   );
 };
-
 const MainStack = () => {
   return (
     <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="Customers" component={ClienteScreen} />
+      <Stack.Screen name="Customers" component={CustomersScreen} />
     </Stack.Navigator>
   );
 };
 
 export default function Routes() {
+  const navigationRef = useRef<NavigationContainerRef<any>>(null);
+  const [currentRouteName, setCurrentRouteName] = useState<string | undefined>(undefined);
+
+  const isHome = currentRouteName === 'Home';
+  const backgroundColor = isHome ? colors.light : colors.white;
+
   return (
-    <NavigationContainer>
-      <MyStatusBar />
-      <SafeAreaView style={{ flex: 1, backgroundColor: colors.light }}>
+    <NavigationContainer
+      ref={navigationRef}
+      onReady={() => {
+        setCurrentRouteName(navigationRef.current?.getCurrentRoute()?.name);
+      }}
+      onStateChange={() => {
+        setCurrentRouteName(navigationRef.current?.getCurrentRoute()?.name);
+      }}
+    >
+      <MyStatusBar routeName={currentRouteName} />
+      <SafeAreaView style={{ flex: 1, backgroundColor }}>
         <Drawer.Navigator
           screenOptions={{
             headerShown: false,
