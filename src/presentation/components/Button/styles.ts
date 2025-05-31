@@ -18,7 +18,8 @@ const styles = StyleSheet.create({
     color: colors.white,
   },
   disabledButton: {
-    backgroundColor: colors.light200,
+    backgroundColor: colors.primary,
+    opacity: 0.5,
   },
 });
 
