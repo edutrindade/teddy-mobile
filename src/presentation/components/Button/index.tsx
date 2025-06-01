@@ -9,19 +9,30 @@ interface ButtonProps {
   containerStyle?: ViewStyle;
   textStyle?: TextStyle;
   disabled?: boolean;
+  outline?: boolean;
 }
 
-const Button = ({ title, onPress, containerStyle, textStyle, disabled = false }: ButtonProps) => {
+export const Button = ({
+  title,
+  onPress,
+  containerStyle,
+  textStyle,
+  disabled = false,
+  outline = false,
+}: ButtonProps) => {
   return (
     <TouchableOpacity
-      style={[styles.button, containerStyle, disabled && styles.disabledButton]}
+      style={[
+        styles.button,
+        containerStyle,
+        disabled && styles.disabledButton,
+        outline && styles.buttonOutlined,
+      ]}
       onPress={onPress}
       activeOpacity={0.7}
       disabled={disabled}
     >
-      <Text style={[styles.text, textStyle]}>{title}</Text>
+      <Text style={[styles.text, textStyle, outline && styles.buttonOutlinedText]}>{title}</Text>
     </TouchableOpacity>
   );
 };
-
-export default Button;
