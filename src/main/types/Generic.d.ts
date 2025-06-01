@@ -13,6 +13,7 @@ type TColors = {
   grey: string;
   black: string;
   black100: string;
+  red: string;
   error: string;
   transparent: string;
 };
