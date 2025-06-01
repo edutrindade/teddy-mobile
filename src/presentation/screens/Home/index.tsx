@@ -5,7 +5,7 @@ import styles from './styles';
 import { layout } from '@/presentation/styles/layout';
 import { Input } from '@/presentation/components/Input';
 import { useState } from 'react';
-import Button from '@/presentation/components/Button';
+import { Button } from '@/presentation/components/Button';
 import { useNavigation } from '@react-navigation/native';
 
 export default function HomeScreen() {
