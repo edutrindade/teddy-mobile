@@ -13,9 +13,11 @@ type TColors = {
   grey: string;
   black: string;
   black100: string;
-  red: string;
   error: string;
+  red: string;
+  blue: string;
   transparent: string;
+  background;
 };
 
 type TLayout = {
