@@ -1,13 +1,17 @@
-import { Header } from '@/presentation/components/Header';
+import { useState } from 'react';
 import { FlatList, TouchableOpacity, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { Header } from '@/presentation/components/Header';
 import { CommonText as Text } from '@/presentation/components/CommonText';
+import { Pagination } from '@/presentation/components/Pagination';
+import { Button } from '@/presentation/components/Button';
+import { Card } from '@/presentation/components/Card';
+import { ModalConfirmation } from '@/presentation/components/ModalConfirmation';
+import { BottomSheetCommon } from '@/presentation/components/BottomSheet';
+import { moneyMask } from '@/utils/masks';
 
 import styles from './styles';
-import { Button } from '@/presentation/components/Button';
-import { useNavigation } from '@react-navigation/native';
-import { Card } from '@/presentation/components/Card';
-import { useState } from 'react';
-import { ModalConfirmation } from '@/presentation/components/ModalConfirmation';
+import { BottomSheetDrawer } from '@/presentation/components/BottomSheetDrawer';
 
 interface Client {
   id: number;
@@ -86,15 +90,61 @@ export default function Customers() {
     },
   ]);
   const [showModalDelete, setShowModalDelete] = useState<boolean>(false);
+  const [showModalRegister, setShowModalRegister] = useState<boolean>(false);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(12);
+  const [drawerVisible, setDrawerVisible] = useState<boolean>(false);
+
+  const [formValues, setFormValues] = useState({
+    name: '',
+    salary: '',
+    companyValue: '',
+  });
+  const [editingClientId, setEditingClientId] = useState<number | null>(null);
+
+  const handleChangeField = (field: 'name' | 'salary' | 'companyValue', value: string) => {
+    setFormValues(prev => ({ ...prev, [field]: value }));
+  };
+
+  const handleClearForm = () => {
+    setFormValues({ name: '', salary: '', companyValue: '' });
+    setEditingClientId(null);
+  };
 
   const handleAdd = (id: number) => {
     console.log('Add customer');
   };
 
   const handleEdit = (id: number) => {
-    console.log('Edit customer');
+    const client = customers.find(c => c.id === id);
+    if (client) {
+      setFormValues({
+        name: client.name,
+        salary: moneyMask(client.salary.toString()),
+        companyValue: moneyMask(client.companyValuation.toString()),
+      });
+      setEditingClientId(client.id);
+      setShowModalRegister(true);
+    }
+  };
+
+  const handleSubmit = () => {
+    const payload = {
+      name: formValues.name,
+      salary: parseFloat(formValues.salary.replace(/[^\d]/g, '')) || 0,
+      companyValuation: parseFloat(formValues.companyValue.replace(/[^\d]/g, '')) || 0,
+    };
+
+    if (editingClientId) {
+      console.log('Atualizar cliente', editingClientId, payload);
+      // chamada de update...
+    } else {
+      console.log('Cadastrar novo cliente', payload);
+      // chamada de criação...
+    }
+
+    setShowModalRegister(false);
+    handleClearForm();
   };
 
   const handleDelete = (id: number) => {
@@ -118,83 +168,9 @@ export default function Customers() {
     />
   );
 
-  const renderPagination = () => {
-    const pages = [];
-    const maxVisiblePages = 3;
-    let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
-    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
-
-    if (endPage - startPage < maxVisiblePages - 1) {
-      startPage = Math.max(1, endPage - maxVisiblePages + 1);
-    }
-
-    if (startPage > 1) {
-      pages.push(
-        <TouchableOpacity
-          key="first"
-          style={styles.paginationButton}
-          onPress={() => handlePageChange(1)}
-        >
-          <Text style={styles.paginationText}>1</Text>
-        </TouchableOpacity>
-      );
-
-      if (startPage > 2) {
-        pages.push(
-          <Text key="dots-start" style={styles.paginationText}>
-            ...
-          </Text>
-        );
-      }
-    }
-
-    for (let i = startPage; i <= endPage; i++) {
-      pages.push(
-        <TouchableOpacity
-          key={i}
-          style={[styles.paginationButton, i === currentPage && styles.paginationButtonActive]}
-          onPress={() => handlePageChange(i)}
-        >
-          <Text style={[styles.paginationText, i === currentPage && styles.paginationTextActive]}>
-            {i}
-          </Text>
-        </TouchableOpacity>
-      );
-    }
-
-    const handlePageChange = (page: number) => {
-      if (page >= 1 && page <= totalPages && page !== currentPage) {
-        setCurrentPage(page);
-        // Aqui você chamaria a API novamente com a nova página
-        console.log('Mudando para a página:', page);
-      }
-    };
-
-    if (endPage < totalPages) {
-      if (endPage < totalPages - 1) {
-        pages.push(
-          <Text key="dots-end" style={styles.paginationText}>
-            ...
-          </Text>
-        );
-      }
-      pages.push(
-        <TouchableOpacity
-          key="last"
-          style={styles.paginationButton}
-          onPress={() => handlePageChange(totalPages)}
-        >
-          <Text style={styles.paginationText}>{totalPages}</Text>
-        </TouchableOpacity>
-      );
-    }
-
-    return <View style={styles.pagination}>{pages}</View>;
-  };
-
   return (
     <View style={{ flex: 1 }}>
-      <Header />
+      <Header setDrawerVisible={setDrawerVisible} />
       <View style={styles.container}>
         <View style={styles.titleContainer}>
           <Text style={styles.quantityText}>{customers.length}</Text>
@@ -215,10 +191,17 @@ export default function Customers() {
         />
 
         <View style={styles.buttonContainer}>
-          <Button title="Criar cliente" onPress={() => navigation.navigate('Home')} outline />
+          <Button title="Criar cliente" onPress={() => setShowModalRegister(true)} outline />
         </View>
 
-        {renderPagination()}
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={page => {
+            setCurrentPage(page);
+            console.log('Mudando para página:', page);
+          }}
+        />
       </View>
 
       <ModalConfirmation
@@ -228,6 +211,23 @@ export default function Customers() {
           setShowModalDelete(false);
         }}
         close={() => setShowModalDelete(false)}
+      />
+
+      <BottomSheetDrawer visible={drawerVisible} onClose={() => setDrawerVisible(false)} />
+
+      <BottomSheetCommon
+        visible={showModalRegister}
+        title={editingClientId ? 'Editar Cliente' : 'Criar Cliente'}
+        mode={editingClientId ? 'edit' : 'create'}
+        onConfirm={handleSubmit}
+        onCancel={() => {
+          setShowModalRegister(false);
+          handleClearForm();
+        }}
+        onConfirmText={editingClientId ? 'Salvar' : 'Criar cliente'}
+        formValues={formValues}
+        onChange={handleChangeField}
+        onClear={handleClearForm}
       />
     </View>
   );

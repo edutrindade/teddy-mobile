@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     fontSize: layout.fontSize.large,
   },
   quantityText: {
-    fontFamily: 'Inter_700Bold',
+    fontFamily: layout.fontFamily.bold,
     fontSize: layout.fontSize.large,
   },
   listContent: {
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   emptyText: {
     textAlign: 'center',
     marginTop: 32,
-    fontFamily: 'Inter_400Regular',
+    fontFamily: layout.fontFamily.regular,
     color: colors.grey,
   },
   buttonContainer: {
@@ -42,29 +42,6 @@ const styles = StyleSheet.create({
   buttonOutlined: {
     borderWidth: 1,
     borderColor: colors.primary,
-  },
-
-  pagination: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginVertical: layout.spacing.regular,
-  },
-  paginationButton: {
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    borderRadius: 4,
-    marginHorizontal: 4,
-  },
-  paginationButtonActive: {
-    backgroundColor: colors.primary,
-  },
-  paginationText: {
-    fontSize: 16,
-    color: colors.black,
-  },
-  paginationTextActive: {
-    color: colors.white,
   },
 });
 
