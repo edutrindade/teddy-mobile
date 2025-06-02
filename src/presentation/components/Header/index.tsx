@@ -1,12 +1,25 @@
 import React from 'react';
 import { View, Image, TouchableOpacity } from 'react-native';
-import styles from './styles';
-import Logo from '@/assets/images/logo.png';
+import { useNavigation } from '@react-navigation/native';
+import { DrawerNavigationProp } from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/Feather';
 import { colors } from '@/presentation/styles/colors';
+import Logo from '@/assets/images/logo.png';
 
-export const Header = () => {
-  const onMenuPress = () => console.log('Menu button pressed');
+import styles from './styles';
+
+interface HeaderProps {
+  setDrawerVisible: (visible: boolean) => void;
+}
+
+export const Header = ({ setDrawerVisible }: HeaderProps) => {
+  const navigation = useNavigation<DrawerNavigationProp<any>>();
+
+  //const onMenuPress = () => navigation.openDrawer();
+
+  const onMenuPress = () => {
+    setDrawerVisible(true);
+  };
 
   return (
     <View style={styles.container}>

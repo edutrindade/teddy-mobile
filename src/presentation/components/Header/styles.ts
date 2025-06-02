@@ -13,12 +13,13 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     elevation: layout.elevation.default,
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'flex-end',
     paddingHorizontal: layout.spacing.regular,
   },
   logoContainer: {
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     height: '100%',
+    paddingBottom: layout.spacing.small,
   },
   logo: {
     resizeMode: 'contain',
