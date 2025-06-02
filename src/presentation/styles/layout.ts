@@ -33,7 +33,7 @@ export const layout: TLayout = {
   borderRadius: 4,
   screenWidth: width,
   screenHeight: height,
-  headerHeight: getSize(50),
+  headerHeight: Platform.OS === 'android' ? getSize(42) : getSize(72),
 
   buttonBorderRadius: 24,
   elevation: {
