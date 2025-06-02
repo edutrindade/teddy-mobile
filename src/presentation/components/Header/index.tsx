@@ -15,8 +15,6 @@ interface HeaderProps {
 export const Header = ({ setDrawerVisible }: HeaderProps) => {
   const navigation = useNavigation<DrawerNavigationProp<any>>();
 
-  //const onMenuPress = () => navigation.openDrawer();
-
   const onMenuPress = () => {
     setDrawerVisible(true);
   };
