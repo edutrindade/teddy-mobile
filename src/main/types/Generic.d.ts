@@ -11,6 +11,7 @@ type TColors = {
   light200: string;
   light300: string;
   grey: string;
+  grey200: string;
   black: string;
   black100: string;
   error: string;

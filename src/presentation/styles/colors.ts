@@ -5,6 +5,7 @@ export const colors: TColors = {
   light200: '#D9D9D9',
   light300: '#666666',
   grey: '#AAAAAA',
+  grey200: '#7A7A7A',
   black: '#000000',
   black100: 'rgba(0,0,0,0.4)',
   error: '#FFB2B2',
