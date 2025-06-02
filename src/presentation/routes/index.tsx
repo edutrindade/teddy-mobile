@@ -43,9 +43,6 @@ export default function Routes() {
   const navigationRef = useRef<NavigationContainerRef<any>>(null);
   const [currentRouteName, setCurrentRouteName] = useState<string | undefined>(undefined);
 
-  const isHome = currentRouteName === 'Home';
-  const backgroundColor = isHome ? colors.light : colors.white;
-
   return (
     <NavigationContainer
       ref={navigationRef}
