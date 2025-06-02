@@ -7,6 +7,7 @@ export const colors: TColors = {
   grey: '#AAAAAA',
   black: '#000000',
   black100: 'rgba(0,0,0,0.4)',
+  red: '#FF0000',
   error: '#FFB2B2',
   transparent: 'transparent',
 };
