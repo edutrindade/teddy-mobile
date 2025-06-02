@@ -18,11 +18,11 @@ export default StyleSheet.create({
     gap: layout.spacing.small,
   },
   name: {
-    fontFamily: 'Inter_700Bold',
+    fontFamily: layout.fontFamily.bold,
     fontSize: layout.fontSize.regular,
   },
   detail: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: layout.fontFamily.regular,
     fontSize: layout.fontSize.normal,
   },
   iconsContainer: {
