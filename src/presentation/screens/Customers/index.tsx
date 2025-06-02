@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FlatList, TouchableOpacity, View } from 'react-native';
+import { FlatList, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Header } from '@/presentation/components/Header';
 import { CommonText as Text } from '@/presentation/components/CommonText';
@@ -12,6 +12,8 @@ import { moneyMask } from '@/utils/masks';
 
 import styles from './styles';
 import { BottomSheetDrawer } from '@/presentation/components/BottomSheetDrawer';
+import { Select } from '@/presentation/components/Select';
+import { layout } from '@/presentation/styles/layout';
 
 interface Client {
   id: number;
@@ -89,6 +91,7 @@ export default function Customers() {
       updatedAt: '2025-05-31T01:02:59.781Z',
     },
   ]);
+  const [itemsPerPage, setItemsPerPage] = useState<number>(5);
   const [showModalDelete, setShowModalDelete] = useState<boolean>(false);
   const [showModalRegister, setShowModalRegister] = useState<boolean>(false);
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -174,11 +177,27 @@ export default function Customers() {
       <View style={styles.container}>
         <View style={styles.titleContainer}>
           <Text style={styles.quantityText}>{customers.length}</Text>
-          <Text style={styles.titleDescription}>clientes encontrados:</Text>
+          <Text style={styles.titleDescription}>clientes encontrados</Text>
         </View>
 
         <View style={styles.paginationContainer}>
-          <Text style={styles.titleDescription}>Clientes por página: </Text>
+          <Text style={styles.titleDescription}>Clientes por página</Text>
+
+          <Select
+            value={itemsPerPage}
+            onChange={val => {
+              setItemsPerPage(Number(val));
+              setCurrentPage(1);
+            }}
+            options={[
+              { label: '5', value: 5 },
+              { label: '10', value: 10 },
+              { label: '20', value: 20 },
+              { label: '50', value: 50 },
+            ]}
+            placeholder="Itens por página"
+            containerStyle={{ width: layout.screenWidth * 0.14 }}
+          />
         </View>
 
         <FlatList

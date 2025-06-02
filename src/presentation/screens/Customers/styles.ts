@@ -17,9 +17,13 @@ const styles = StyleSheet.create({
   paginationContainer: {
     marginTop: layout.spacing.small,
     marginBottom: layout.spacing.large,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: layout.spacing.small,
   },
   titleDescription: {
-    fontSize: layout.fontSize.large,
+    fontSize: layout.fontSize.intermedium,
   },
   quantityText: {
     fontFamily: layout.fontFamily.bold,
