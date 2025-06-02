@@ -20,14 +20,14 @@ export default StyleSheet.create({
     gap: layout.spacing.small,
   },
   modalTitle: {
-    fontFamily: 'Inter_700Bold',
+    fontFamily: layout.fontFamily.bold,
     fontSize: layout.fontSize.large,
     marginBottom: layout.spacing.small,
     color: colors.white,
     textAlign: 'center',
   },
   modalDescription: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: layout.fontFamily.regular,
     fontSize: layout.fontSize.normal,
     color: colors.white,
     textAlign: 'center',

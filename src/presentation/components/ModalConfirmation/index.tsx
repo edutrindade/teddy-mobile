@@ -3,6 +3,7 @@ import { Modal, SafeAreaView, TouchableOpacity, View } from 'react-native';
 import { CommonText as Text } from '../CommonText';
 
 import styles from './styles';
+import { layout } from '@/presentation/styles/layout';
 
 interface ModalConfirmationProps {
   visible: boolean;
@@ -22,7 +23,7 @@ export const ModalConfirmation = ({ visible = false, confirm, close }: ModalConf
 
           <View style={styles.modalFooter}>
             <TouchableOpacity style={styles.modalActionButton} onPress={confirm}>
-              <Text style={[styles.modalActionText, { fontFamily: 'Inter_700Bold' }]}>
+              <Text style={[styles.modalActionText, { fontFamily: layout.fontFamily.bold }]}>
                 Excluir cliente
               </Text>
             </TouchableOpacity>
