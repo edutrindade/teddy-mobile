@@ -1,5 +1,4 @@
 import React, { useRef, useState } from 'react';
-import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer, NavigationContainerRef } from '@react-navigation/native';
 
@@ -7,7 +6,6 @@ import HomeScreen from '../screens/Home';
 import CustomersScreen from '../screens/Customers';
 import { View, StatusBar } from 'react-native';
 import { colors } from '../styles/colors';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 export type RootStackParamList = {
   Home: undefined;
@@ -21,11 +19,10 @@ declare global {
 }
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
-const Drawer = createDrawerNavigator();
 
 const MyStatusBar = ({ routeName }: { routeName: string | undefined }) => {
   const isHome = routeName === 'Home';
-  const backgroundColor = isHome ? colors.light : colors.white;
+  const backgroundColor = isHome ? colors.light : colors.transparent;
 
   return (
     <View style={{ backgroundColor, height: StatusBar.currentHeight }}>
@@ -60,15 +57,7 @@ export default function Routes() {
       }}
     >
       <MyStatusBar routeName={currentRouteName} />
-      <SafeAreaView style={{ flex: 1, backgroundColor }}>
-        <Drawer.Navigator
-          screenOptions={{
-            headerShown: false,
-          }}
-        >
-          <Drawer.Screen name="Main" component={MainStack} />
-        </Drawer.Navigator>
-      </SafeAreaView>
+      <MainStack />
     </NavigationContainer>
   );
 }
