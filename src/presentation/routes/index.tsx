@@ -4,12 +4,14 @@ import { NavigationContainer, NavigationContainerRef } from '@react-navigation/n
 
 import HomeScreen from '../screens/Home';
 import CustomersScreen from '../screens/Customers';
+import SelectedCustomersScreen from '../screens/SelectedCustomers';
 import { View, StatusBar } from 'react-native';
 import { colors } from '../styles/colors';
 
 export type RootStackParamList = {
   Home: undefined;
   Customers: undefined;
+  SelectedCustomers: undefined;
 };
 
 declare global {
@@ -35,6 +37,7 @@ const MainStack = () => {
     <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="Customers" component={CustomersScreen} />
+      <Stack.Screen name="SelectedCustomers" component={SelectedCustomersScreen} />
     </Stack.Navigator>
   );
 };
