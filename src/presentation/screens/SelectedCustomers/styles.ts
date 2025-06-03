@@ -6,18 +6,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+    paddingBottom: layout.spacing.large,
   },
   titleContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     gap: layout.spacing.small,
-    marginTop: layout.spacing.large,
+    marginVertical: layout.spacing.large,
   },
   titleDescription: {
     fontSize: layout.fontSize.intermedium,
   },
   listContent: {
+    flexGrow: 1,
     paddingBottom: 16,
   },
   emptyContainer: {
@@ -35,11 +37,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     width: layout.screenWidth * 0.9,
     marginTop: layout.spacing.normal,
-    marginBottom: layout.spacing.small,
-  },
-  buttonOutlined: {
-    borderWidth: 1,
-    borderColor: colors.primary,
+    marginBottom: layout.spacing.large,
   },
 });
 
