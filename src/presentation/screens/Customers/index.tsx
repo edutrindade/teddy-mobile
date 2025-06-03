@@ -71,7 +71,7 @@ export default function Customers() {
       setTotalPages(data.totalPages);
       setCurrentPage(data.currentPage);
     } else {
-      console.error('Erro ao buscar clientes:', result.error);
+      showError('Erro ao buscar clientes. Tente novamente.');
     }
   };
 

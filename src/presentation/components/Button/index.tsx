@@ -4,6 +4,7 @@ import { TouchableOpacity, Text, ViewStyle, TextStyle } from 'react-native';
 import styles from './styles';
 
 interface ButtonProps {
+  testId?: string;
   title: string;
   onPress: () => void;
   containerStyle?: ViewStyle;
@@ -13,6 +14,7 @@ interface ButtonProps {
 }
 
 export const Button = ({
+  testId,
   title,
   onPress,
   containerStyle,
@@ -31,6 +33,7 @@ export const Button = ({
       onPress={onPress}
       activeOpacity={0.7}
       disabled={disabled}
+      testID={testId ? testId : undefined}
     >
       <Text style={[styles.text, textStyle, outline && styles.buttonOutlinedText]}>{title}</Text>
     </TouchableOpacity>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1748977929155" clover="3.2.0">
+  <project timestamp="1748977929155" name="All files">
+    <metrics statements="55" coveredstatements="35" conditionals="38" coveredconditionals="18" methods="12" coveredmethods="8" elements="105" coveredelements="61" complexity="0" loc="55" ncloc="55" packages="6" files="12" classes="12"/>
+    <package name="infra.data.adapters">
+      <metrics statements="14" coveredstatements="1" conditionals="8" coveredconditionals="0" methods="3" coveredmethods="0"/>
+      <file name="AsyncStorageAdapter.tsx" path="/Users/eduardotrindade/Projetos/teste-mobile-teddy/src/infra/data/adapters/AsyncStorageAdapter.tsx">
+        <metrics statements="14" coveredstatements="1" conditionals="8" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="12" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="17" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="29" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="presentation.components.Button">
+      <metrics statements="3" coveredstatements="3" conditionals="10" coveredconditionals="6" methods="1" coveredmethods="1"/>
+      <file name="index.tsx" path="/Users/eduardotrindade/Projetos/teste-mobile-teddy/src/presentation/components/Button/index.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="10" coveredconditionals="6" methods="1" coveredmethods="1"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="25" count="16" type="stmt"/>
+      </file>
+      <file name="styles.ts" path="/Users/eduardotrindade/Projetos/teste-mobile-teddy/src/presentation/components/Button/styles.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="5" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="presentation.components.CommonText">
+      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="index.tsx" path="/Users/eduardotrindade/Projetos/teste-mobile-teddy/src/presentation/components/CommonText/index.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="7" count="16" type="stmt"/>
+      </file>
+      <file name="styles.ts" path="/Users/eduardotrindade/Projetos/teste-mobile-teddy/src/presentation/components/CommonText/styles.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="5" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="presentation.components.Input">
+      <metrics statements="3" coveredstatements="3" conditionals="4" coveredconditionals="2" methods="1" coveredmethods="1"/>
+      <file name="index.tsx" path="/Users/eduardotrindade/Projetos/teste-mobile-teddy/src/presentation/components/Input/index.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="4" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="17" count="16" type="stmt"/>
+      </file>
+      <file name="styles.ts" path="/Users/eduardotrindade/Projetos/teste-mobile-teddy/src/presentation/components/Input/styles.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="5" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="presentation.screens.Home">
+      <metrics statements="14" coveredstatements="14" conditionals="6" coveredconditionals="6" methods="4" coveredmethods="4"/>
+      <file name="index.tsx" path="/Users/eduardotrindade/Projetos/teste-mobile-teddy/src/presentation/screens/Home/index.tsx">
+        <metrics statements="13" coveredstatements="13" conditionals="6" coveredconditionals="6" methods="4" coveredmethods="4"/>
+        <line num="14" count="19" type="stmt"/>
+        <line num="15" count="19" type="stmt"/>
+        <line num="16" count="19" type="stmt"/>
+        <line num="18" count="19" type="stmt"/>
+        <line num="19" count="9" type="stmt"/>
+        <line num="20" count="9" type="stmt"/>
+        <line num="21" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="22" count="8" type="cond" truecount="2" falsecount="0"/>
+        <line num="25" count="9" type="stmt"/>
+        <line num="28" count="19" type="stmt"/>
+        <line num="29" count="1" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="33" count="19" type="stmt"/>
+      </file>
+      <file name="styles.ts" path="/Users/eduardotrindade/Projetos/teste-mobile-teddy/src/presentation/screens/Home/styles.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="4" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="presentation.styles">
+      <metrics statements="18" coveredstatements="11" conditionals="10" coveredconditionals="4" methods="2" coveredmethods="1"/>
+      <file name="colors.ts" path="/Users/eduardotrindade/Projetos/teste-mobile-teddy/src/presentation/styles/colors.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+      </file>
+      <file name="deviceInfo.ts" path="/Users/eduardotrindade/Projetos/teste-mobile-teddy/src/presentation/styles/deviceInfo.ts">
+        <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="1" methods="0" coveredmethods="0"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+      </file>
+      <file name="layout.ts" path="/Users/eduardotrindade/Projetos/teste-mobile-teddy/src/presentation/styles/layout.ts">
+        <metrics statements="14" coveredstatements="7" conditionals="8" coveredconditionals="3" methods="2" coveredmethods="1"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="9" count="19" type="stmt"/>
+        <line num="11" count="19" type="cond" truecount="1" falsecount="1"/>
+        <line num="12" count="19" type="cond" truecount="1" falsecount="1"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="16" count="19" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="25" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="32" count="1" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>

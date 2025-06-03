@@ -12,5 +12,5 @@
     "**/*.ts",
     "**/*.tsx",
     "@types/**/*.d.ts"
-  ]
+, "src/presentation/screens/Home/__tests__/  Home.test.js"  ]
 }

@@ -7,8 +7,8 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: layout.spacing.regular,
-    marginBottom: layout.spacing.large,
+    marginTop: layout.spacing.regular,
+    marginBottom: layout.spacing.large + 4,
   },
   paginationButton: {
     paddingHorizontal: layout.spacing.intermedium / 2,

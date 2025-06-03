@@ -13,21 +13,21 @@ import { asyncStorageAdapter } from '@/infra/data/adapters/AsyncStorageAdapter';
 export default function HomeScreen() {
   const cacheRepository = CacheRepository(asyncStorageAdapter);
   const navigation = useNavigation();
-  const [name, setName] = useState('');
+  const [name, setName] = useState<string>('');
 
   useEffect(() => {
     const fetchUser = async () => {
       const result = await cacheRepository.getUser();
-      if (result.success) setName(result.response || '');
+      if (result.success) {
+        setName(result.response || '');
+      }
     };
     fetchUser();
   }, []);
 
   const handleNext = async () => {
-    if (name) {
-      await cacheRepository.setUser(name);
-      navigation.navigate('Customers');
-    }
+    await cacheRepository.setUser(name);
+    navigation.navigate('Customers');
   };
 
   return (
@@ -37,9 +37,14 @@ export default function HomeScreen() {
     >
       <Text style={{ fontSize: layout.fontSize.title }}>Olá, seja bem-vindo!</Text>
 
-      <Input onChangeText={setName} value={name} placeholder="Digite seu nome" />
+      <Input
+        testId="input-nome"
+        onChangeText={setName}
+        value={name}
+        placeholder="Digite seu nome"
+      />
 
-      <Button title="Entrar" onPress={handleNext} disabled={!name} />
+      <Button testId="botao-entrar" title="Entrar" onPress={handleNext} disabled={!name} />
     </KeyboardAvoidingView>
   );
 }

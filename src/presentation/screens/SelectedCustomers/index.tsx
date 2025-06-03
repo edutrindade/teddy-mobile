@@ -52,7 +52,7 @@ export default function SelectedCustomers() {
       showSuccess('Nenhum cliente selecionado no momento');
       setSelectedCustomers([]);
     } else {
-      console.error('Failed to clear selected customers:', result.error);
+      showError('Erro ao limpar clientes selecionados. Tente novamente.');
     }
   };
 

@@ -11,10 +11,6 @@ const ToastContext = createContext<{
 export const ToastProviderWrapper: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
   const toast = useToast();
 
-  console.log('ToastProviderWrapper initialized');
-  console.log('Toast: ', toast);
-  console.log('ToastProviderWrapper children: ', children);
-
   const showSuccess = (message: string) => {
     toast.show(message, { type: 'success' } as ToastOptions);
   };
