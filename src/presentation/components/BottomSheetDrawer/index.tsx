@@ -58,6 +58,8 @@ export const BottomSheetDrawer = ({ visible, onClose }: BottomSheetDrawerProps) 
       onClose={onClose}
       backgroundStyle={{ backgroundColor: colors.transparent }}
       handleIndicatorStyle={{ display: 'none' }}
+      enablePanDownToClose
+      detached
     >
       <TouchableWithoutFeedback onPress={onClose}>
         <BottomSheetView style={styles.sheetContainer}>

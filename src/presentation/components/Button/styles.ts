@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: layout.spacing.regular,
   },
   text: {
-    fontSize: layout.fontSize.extraLarge,
+    fontSize: layout.fontSize.large,
     fontFamily: layout.fontFamily.bold,
     color: colors.white,
   },
