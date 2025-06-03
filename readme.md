@@ -48,7 +48,6 @@ Este projeto foi criado como solução para o  **Teste Mobile Teddy** , contempl
 
 ## 🏗️ Estrutura do Projeto
 
-
 ```plaintext
 /src
   /assets                  # Recursos estáticos como imagens, animações, fontes, etc.
@@ -65,24 +64,9 @@ Este projeto foi criado como solução para o  **Teste Mobile Teddy** , contempl
   /utils                   # Utilitários e helpers (ex: máscaras, funções auxiliares)
 ```
 
+---
 
-## 🧪 Testes
 
-* **Unitários:** Cobertura focada nas telas e repositórios.
-* **End-to-End:** Automação de fluxo crítico do app via Detox no Android.
-
-Para executar os testes unitários:
-
-```
-npm run test:coverage
-```
-
-Para rodar os testes e2e (Android), lembrando de configurar seu dispositivo no .detoxrc.js:
-
-```n
-npm run detox:build
-npm run detox:test
-```
 
 ## 🚀 Como Rodar o Projeto
 
@@ -116,6 +100,30 @@ ou npm run android
 ```
 
 ---
+
+## 🧪 Testes
+
+* **Unitários:** Cobertura focada nas telas e repositórios.
+* **End-to-End:** Automação de fluxo crítico do app via Detox no Android.
+
+Para executar os testes unitários:
+
+```
+npm run test:coverage
+```
+
+Para rodar os testes e2e (Android), lembrando de configurar seu dispositivo no .detoxrc.js:
+
+```n
+npm run detox:build
+npm run detox:test
+```
+
+
+
+---
+
+
 
 ## ⚙️ Decisões Técnicas
 
