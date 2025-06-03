@@ -1,22 +1,34 @@
+import { useEffect, useState } from 'react';
 import { KeyboardAvoidingView, Platform } from 'react-native';
 import { CommonText as Text } from '@/presentation/components/CommonText';
 
 import styles from './styles';
 import { layout } from '@/presentation/styles/layout';
 import { Input } from '@/presentation/components/Input';
-import { useState } from 'react';
 import { Button } from '@/presentation/components/Button';
 import { useNavigation } from '@react-navigation/native';
-
-import { API_URL_DEV } from '@env';
-
-const BASE_URL = API_URL_DEV;
+import { CacheRepository } from '@/infra/data/repositories/CacheRepository';
+import { asyncStorageAdapter } from '@/infra/data/adapters/AsyncStorageAdapter';
 
 export default function HomeScreen() {
+  const cacheRepository = CacheRepository(asyncStorageAdapter);
   const navigation = useNavigation();
   const [name, setName] = useState('');
 
-  console.log('API URL:', BASE_URL);
+  useEffect(() => {
+    const fetchUser = async () => {
+      const result = await cacheRepository.getUser();
+      if (result.success) setName(result.response || '');
+    };
+    fetchUser();
+  }, []);
+
+  const handleNext = async () => {
+    if (name) {
+      await cacheRepository.setUser(name);
+      navigation.navigate('Customers');
+    }
+  };
 
   return (
     <KeyboardAvoidingView
@@ -27,7 +39,7 @@ export default function HomeScreen() {
 
       <Input onChangeText={setName} value={name} placeholder="Digite seu nome" />
 
-      <Button title="Entrar" onPress={() => navigation.navigate('Customers')} disabled={!name} />
+      <Button title="Entrar" onPress={handleNext} disabled={!name} />
     </KeyboardAvoidingView>
   );
 }
