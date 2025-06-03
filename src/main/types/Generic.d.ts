@@ -3,6 +3,19 @@ declare module '*.svg' {
   const content: string;
   export default content;
 }
+declare module '*.json';
+
+type Nullable<T> = T | null;
+
+type TResponse<T> = {
+  result?: T;
+  error?: TResponseError;
+};
+
+type TResponseError = {
+  id: number;
+  msg: string;
+};
 
 type TColors = {
   primary: string;
