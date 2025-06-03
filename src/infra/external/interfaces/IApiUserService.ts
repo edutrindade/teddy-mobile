@@ -18,7 +18,7 @@ export interface PaginatedUsersResponse {
   currentPage: number;
 }
 
-export interface IApiService {
+export interface IApiUserService {
   createUser(payload: UserPayload): Promise<Result<void>>;
   getUsers(page?: number, limit?: number): Promise<Result<PaginatedUsersResponse>>;
   getUserById(id: number): Promise<Result<UserResponse>>;
