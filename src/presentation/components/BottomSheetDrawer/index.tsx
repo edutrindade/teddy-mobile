@@ -2,7 +2,7 @@ import React, { useMemo, useRef, useEffect } from 'react';
 import { View, TouchableOpacity, TouchableWithoutFeedback, Image } from 'react-native';
 import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
 import { useNavigation, useNavigationState } from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'react-native-vector-icons/Ionicons';
 import { colors } from '@/presentation/styles/colors';
 import { CommonText as Text } from '@/presentation/components/CommonText';
 import Logo from '@/assets/images/logo.png';
@@ -16,8 +16,8 @@ interface BottomSheetDrawerProps {
 
 const menuItems = [
   { label: 'Home', icon: 'home', route: 'Home' },
-  { label: 'Clientes', icon: 'users', route: 'Customers' },
-  { label: 'Produtos', icon: 'grid', route: 'Products' },
+  { label: 'Clientes', icon: 'person', route: 'Customers' },
+  { label: 'Clientes selecionados', icon: 'people', route: 'SelectedCustomers' },
 ];
 
 export const BottomSheetDrawer = ({ visible, onClose }: BottomSheetDrawerProps) => {
@@ -46,7 +46,7 @@ export const BottomSheetDrawer = ({ visible, onClose }: BottomSheetDrawerProps) 
       snapPoints={snapPoints}
       onClose={onClose}
       backgroundStyle={{ backgroundColor: colors.transparent }}
-      handleIndicatorStyle={{ backgroundColor: colors.white }}
+      handleIndicatorStyle={{ display: 'none' }}
     >
       <TouchableWithoutFeedback onPress={onClose}>
         <BottomSheetView style={styles.sheetContainer}>
