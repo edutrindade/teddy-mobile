@@ -66,8 +66,6 @@ Este projeto foi criado como solução para o  **Teste Mobile Teddy** , contempl
 
 ---
 
-
-
 ## 🚀 Como Rodar o Projeto
 
 ### Pré-requisitos
@@ -119,11 +117,7 @@ npm run detox:build
 npm run detox:test
 ```
 
-
-
 ---
-
-
 
 ## ⚙️ Decisões Técnicas
 
@@ -140,7 +134,7 @@ npm run detox:test
 
 Confira o vídeo demonstrativo da aplicação, onde explico as principais funcionalidades e as decisões técnicas tomadas durante o desenvolvimento:
 
-[![Veja o vídeo](https://img.youtube.com/vi/seu_video_id/maxresdefault.jpg)](https://youtu.be/seu_video_id)
+[Apresentação](https://youtu.be/cSMB11dsZVw)
 
 ---
 
