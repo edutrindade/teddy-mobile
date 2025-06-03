@@ -4,6 +4,8 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { useFonts, Inter_400Regular, Inter_700Bold } from '@expo-google-fonts/inter';
 import Routes from './presentation/routes';
+import { ToastProviderWrapper } from './presentation/components/ToastNotification';
+import { ToastProvider } from 'react-native-toast-notifications';
 
 function useCustomFonts() {
   const [fontsLoaded] = useFonts({
@@ -25,9 +27,13 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
-      <GestureHandlerRootView style={{ flex: 1 }}>
-        <Routes />
-      </GestureHandlerRootView>
+      <ToastProvider placement="top" duration={2000}>
+        <ToastProviderWrapper>
+          <GestureHandlerRootView style={{ flex: 1 }}>
+            <Routes />
+          </GestureHandlerRootView>
+        </ToastProviderWrapper>
+      </ToastProvider>
     </SafeAreaProvider>
   );
 }
