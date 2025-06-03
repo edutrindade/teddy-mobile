@@ -14,6 +14,8 @@ import { Loading } from '@/presentation/components/Loading';
 import { Select } from '@/presentation/components/Select';
 import { layout } from '@/presentation/styles/layout';
 import { PaginatedUsersResponse } from '@/infra/external/interfaces/IApiUserService';
+import { CacheRepository } from '@/infra/data/repositories/CacheRepository';
+import { asyncStorageAdapter } from '@/infra/data/adapters/AsyncStorageAdapter';
 import { moneyMask } from '@/utils/masks';
 
 import styles from './styles';
@@ -27,10 +29,12 @@ interface Client {
 }
 
 export default function Customers() {
-  const { showSuccess, showError, showInfo, showWarning } = useToastNotifications();
+  const cacheRepository = CacheRepository(asyncStorageAdapter);
+  const { showSuccess, showError, showWarning } = useToastNotifications();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [customers, setCustomers] = useState<Client[]>([]);
   const [customerSelected, setCustomerSelected] = useState<Client | null>(null);
+  const [selectedCustomers, setSelectedCustomers] = useState<Client[]>([]);
   const [editingCustomerId, setEditingCustomerId] = useState<number | null>(null);
   const [itemsPerPage, setItemsPerPage] = useState<number>(5);
   const [showModalDelete, setShowModalDelete] = useState<boolean>(false);
@@ -47,6 +51,14 @@ export default function Customers() {
   useEffect(() => {
     fetchCustomers(currentPage, itemsPerPage);
   }, [currentPage, itemsPerPage]);
+
+  useEffect(() => {
+    const fetchSelectedCustomers = async () => {
+      const result = await cacheRepository.getSelectedCustomers();
+      if (result.success) setSelectedCustomers(result.response || []);
+    };
+    fetchSelectedCustomers();
+  }, []);
 
   const fetchCustomers = async (page: number, limit: number) => {
     setIsLoading(true);
@@ -73,7 +85,31 @@ export default function Customers() {
   };
 
   const handleAdd = (id: number) => {
-    console.log('Select customer');
+    const customer = customers.find(c => c.id === id);
+    if (customer) {
+      const alreadySelected = selectedCustomers.some(c => c.id === customer.id);
+      if (alreadySelected) {
+        showWarning('Cliente já selecionado.');
+        return;
+      }
+
+      setSelectedCustomers(prev => [...prev, customer]);
+      cacheRepository
+        .setSelectedCustomers(customer)
+        .then(() => showSuccess('Cliente selecionado com sucesso!'))
+        .catch(() => showError('Erro ao selecionar cliente. Tente novamente.'));
+    }
+  };
+
+  const handleRemove = (id: number) => {
+    const customer = selectedCustomers.find(c => c.id === id);
+    if (customer) {
+      setSelectedCustomers(prev => prev.filter(c => c.id !== id));
+      cacheRepository
+        .removeSelectedCustomer(id)
+        .then(() => showSuccess('Cliente removido com sucesso!'))
+        .catch(() => showError('Erro ao remover cliente. Tente novamente.'));
+    }
   };
 
   const handleEdit = (id: number) => {
@@ -141,7 +177,9 @@ export default function Customers() {
         style: 'currency',
         currency: 'BRL',
       })}
+      clientSelected={selectedCustomers.some(c => c.id === item.id)}
       onAdd={() => handleAdd(item.id)}
+      onRemove={() => handleRemove(item.id)}
       onEdit={() => handleEdit(item.id)}
       onDelete={() => {
         setShowModalDelete(true);
