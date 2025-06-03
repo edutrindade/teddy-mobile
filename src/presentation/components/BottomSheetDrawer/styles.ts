@@ -32,6 +32,10 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     elevation: 5,
   },
+  welcome: {
+    fontSize: layout.fontSize.normal,
+    marginBottom: layout.spacing.normal,
+  },
   logo: {
     width: 120,
     height: 40,

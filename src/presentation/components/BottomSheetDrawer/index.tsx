@@ -8,6 +8,8 @@ import { CommonText as Text } from '@/presentation/components/CommonText';
 import Logo from '@/assets/images/logo.png';
 
 import styles from './styles';
+import { CacheRepository } from '@/infra/data/repositories/CacheRepository';
+import { asyncStorageAdapter } from '@/infra/data/adapters';
 
 interface BottomSheetDrawerProps {
   visible: boolean;
@@ -21,6 +23,8 @@ const menuItems = [
 ];
 
 export const BottomSheetDrawer = ({ visible, onClose }: BottomSheetDrawerProps) => {
+  const cacheRepository = CacheRepository(asyncStorageAdapter);
+  const [name, setName] = React.useState<string>('');
   const bottomSheetRef = useRef<BottomSheet>(null);
   const snapPoints = useMemo(() => ['100%'], []);
   const navigation = useNavigation();
@@ -28,9 +32,16 @@ export const BottomSheetDrawer = ({ visible, onClose }: BottomSheetDrawerProps) 
 
   useEffect(() => {
     if (visible) {
+      fetchUser();
+
       bottomSheetRef.current?.expand();
     }
   }, [visible]);
+
+  const fetchUser = async () => {
+    const result = await cacheRepository.getUser();
+    if (result.success) setName(result.response || '');
+  };
 
   const handleNavigate = (route: string) => {
     navigation.navigate(route as never);
@@ -54,6 +65,7 @@ export const BottomSheetDrawer = ({ visible, onClose }: BottomSheetDrawerProps) 
             <Image source={Logo} style={styles.logo} resizeMode="contain" />
 
             <View style={styles.menuBox}>
+              <Text style={styles.welcome}>Olá, {name}!</Text>
               {menuItems.map(item => {
                 const isActive = currentRouteName === item.route;
 
