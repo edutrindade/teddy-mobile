@@ -5,6 +5,10 @@ declare module '*.svg' {
 }
 declare module '*.json';
 
+declare module '@env' {
+  export const API_URL_DEV: string;
+}
+
 type Nullable<T> = T | null;
 
 type TResponse<T> = {

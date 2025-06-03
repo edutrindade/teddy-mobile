@@ -9,7 +9,7 @@ interface InputProps extends TextInputProps {
   label?: string;
   containerStyle?: object;
   inputStyle?: object;
-  ref: React.RefObject<TextInput> | undefined;
+  ref?: React.RefObject<TextInput> | undefined;
 }
 
 export const Input = ({ label, containerStyle, inputStyle, ref, ...rest }: InputProps) => {

@@ -8,9 +8,15 @@ import { useState } from 'react';
 import { Button } from '@/presentation/components/Button';
 import { useNavigation } from '@react-navigation/native';
 
+import { API_URL_DEV } from '@env';
+
+const BASE_URL = API_URL_DEV;
+
 export default function HomeScreen() {
   const navigation = useNavigation();
   const [name, setName] = useState('');
+
+  console.log('API URL:', BASE_URL);
 
   return (
     <KeyboardAvoidingView
