@@ -31,4 +31,11 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     marginVertical: layout.spacing.small - 2,
   },
+  simpleCardContainer: {
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    marginRight: layout.spacing.regular,
+  },
 });

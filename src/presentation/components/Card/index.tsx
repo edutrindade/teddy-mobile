@@ -12,26 +12,32 @@ export interface CardProps {
   name: string;
   salary: string;
   company: string;
+  clientSelected?: boolean;
   onAdd?: () => void;
+  onRemove?: () => void;
   onEdit?: () => void;
   onDelete?: () => void;
   containerStyle?: StyleProp<ViewStyle>;
   nameTextStyle?: StyleProp<TextStyle>;
   detailTextStyle?: StyleProp<TextStyle>;
   iconSize?: number;
+  simpleCard?: boolean;
 }
 
 export const Card = ({
   name,
   salary,
   company,
+  clientSelected = false,
   onAdd,
+  onRemove,
   onEdit,
   onDelete,
   containerStyle,
   nameTextStyle,
   detailTextStyle,
   iconSize = getSize(20),
+  simpleCard = false,
 }: CardProps) => {
   return (
     <View style={[styles.card, containerStyle]}>
@@ -39,17 +45,31 @@ export const Card = ({
       <Text style={[styles.detail, detailTextStyle]}>Salário: {salary}</Text>
       <Text style={[styles.detail, detailTextStyle]}>Empresa: {company}</Text>
 
-      <View style={styles.iconsContainer}>
-        <TouchableOpacity onPress={onAdd} activeOpacity={0.7} disabled={!onAdd}>
-          <IconOcticons name="plus" size={iconSize} color={colors.black} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={onEdit} activeOpacity={0.7} disabled={!onEdit}>
-          <IconOcticons name="pencil" size={iconSize} color={colors.black} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={onDelete} activeOpacity={0.7} disabled={!onDelete}>
-          <IconFeather name="trash-2" size={iconSize} color={colors.red} />
-        </TouchableOpacity>
-      </View>
+      {!simpleCard ? (
+        <View style={styles.iconsContainer}>
+          {clientSelected ? (
+            <TouchableOpacity onPress={onRemove} activeOpacity={0.7} disabled={!onAdd}>
+              <IconOcticons name="dash" size={iconSize} color={colors.black} />
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity onPress={onAdd} activeOpacity={0.7} disabled={!onAdd}>
+              <IconOcticons name="plus" size={iconSize} color={colors.black} />
+            </TouchableOpacity>
+          )}
+          <TouchableOpacity onPress={onEdit} activeOpacity={0.7} disabled={!onEdit}>
+            <IconOcticons name="pencil" size={iconSize} color={colors.black} />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={onDelete} activeOpacity={0.7} disabled={!onDelete}>
+            <IconFeather name="trash-2" size={iconSize} color={colors.red} />
+          </TouchableOpacity>
+        </View>
+      ) : (
+        <View style={styles.simpleCardContainer}>
+          <TouchableOpacity onPress={onRemove} activeOpacity={0.7} disabled={!onRemove}>
+            <IconOcticons name="dash" size={iconSize} color={colors.red} />
+          </TouchableOpacity>
+        </View>
+      )}
     </View>
   );
 };
